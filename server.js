@@ -1,17 +1,16 @@
 const express = require("express");
 const cors = require("cors");
-const cookieparser = require("cookie-parser");
-const path = require("path")
+const bodyParser = require("body-parser");
 const dotenv = require("dotenv")
 dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(cookieparser());
+app.use(bodyParser.json());
 app.use(express.json());
 
-// const routes = require("./src/routes/data");
-// app.use("/api/start",routes);
+const routes = require("./src/routes/data");
+app.use("/api/start",routes);
 
 const { TEST_PORT } = process.env;
 const port = process.env.PORT || TEST_PORT;
